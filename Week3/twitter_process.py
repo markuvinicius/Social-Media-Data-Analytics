@@ -14,6 +14,9 @@ plt.bar(edges1[:-1],hist1,width=edges1[1:]-edges1[:-1])
 plt.figure()
 plt.scatter(twitter_data.followers,twitter_data.friends)
 
+#monta modelo de regressão com as variáveis friends e followers.
+#variável independente = friends \ variável dependente = followers
+
 x = twitter_data.friends
 y = twitter_data.followers
 

@@ -14,14 +14,14 @@ api = tweepy.API(auth1)
 
 # Tweeter search with keyword
 target_num = 100
-query = "trump"
+query = "WannaCry Hack Attack"
 
 csvFile = open('/Users/Marku/Documents/data_center/WorkSpace/Social-Media-Data-Analytics/Week4/results_trump.csv','w')
 csvWriter = csv.writer(csvFile)
 csvWriter.writerow(["username","author id","created", "text", "retwc", "hashtag", "followers", "friends","polarity","subjectivity"])
 counter = 0
 
-for tweet in tweepy.Cursor(api.search, q = query, lang = "en", result_type = "mixed", count = target_num  ).items():
+for tweet in tweepy.Cursor(api.search, q = query, lang = "", result_type = "mixed", count = target_num  ).items():
     created = tweet.created_at
     text = tweet.text
     text = unidecode.unidecode(text) 
@@ -38,10 +38,7 @@ for tweet in tweepy.Cursor(api.search, q = query, lang = "en", result_type = "mi
     text_blob = TextBlob(text)
     polarity = text_blob.polarity
     subjectivity = text_blob.subjectivity
-    
-    t = text_blob.detect_language
-    print(t)
-    
+      
     csvWriter.writerow([str(username).encode("utf-8"), authorid, created, str(text).encode("utf-8"), retwc, hashtag, followers, friends, polarity, subjectivity])
 
     counter = counter + 1
